@@ -3,6 +3,7 @@ package it.mycompany.spring.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -56,5 +57,11 @@ public class LoggingAspect {
 		String methodName = joinpoint.getSignature().toShortString();
 		System.out.println("Metodo AfterThrowing invocato da " + methodName);
 		System.out.println("Eccezione: " + exception);
+	}
+	
+	@After("execution(* it.mycompany.spring.dao.AccountDAO.findAccounts(..))")
+	public void afterFindAccountsAdvice(JoinPoint joinpoint) {
+		String methodName = joinpoint.getSignature().toShortString();
+		System.out.println("Metodo After (Finally) invocato da " + methodName);
 	}
 }
