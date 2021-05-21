@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -46,5 +47,14 @@ public class LoggingAspect {
 		for (Account account: accounts) {
 			account.setName(account.getName().toUpperCase());
 		}
+	}
+	
+	@AfterThrowing(
+			pointcut="execution(* it.mycompany.spring.dao.AccountDAO.findAccounts(..))", 
+			throwing="exception")
+	public void afterThrowingFindAccountsAdvice(JoinPoint joinpoint, Exception exception) {
+		String methodName = joinpoint.getSignature().toShortString();
+		System.out.println("Metodo AfterThrowing invocato da " + methodName);
+		System.out.println("Eccezione: " + exception);
 	}
 }

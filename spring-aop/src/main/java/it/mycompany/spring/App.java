@@ -22,8 +22,19 @@ public class App {
 		*/
 		
 		// @AfterReturning Advice Demonstration
-		List<Account> accounts = accountDAOInstance.findAccounts();
+		/*
+		List<Account> accounts = accountDAOInstance.findAccounts(false);
 		System.out.println("Contenuto della risposta dal main: " + accounts);
+		*/
+		
+		// @AfterThrowing Advice Demonstration
+		List<Account> accounts2 = null;
+		try {
+			accounts2 = accountDAOInstance.findAccounts(true);
+		} catch (Exception ex) {
+			System.out.println("Main Method: Eccezione " + ex);
+		}
+		System.out.println("Contenuto della risposta dal main: " + accounts2);
 		context.close();
 	}
 

@@ -22,8 +22,11 @@ public class AccountDAO {
 		System.out.println(this.getClass() + " Invio della mail in corso...");
 	}
 	
-	public List<Account> findAccounts(){
+	public List<Account> findAccounts(boolean makeException){
 		System.out.println("All'interno del metodo findAccounts");
+		if(makeException) {
+			throw new RuntimeException("Eccezione lanciata dal metodo findAccounts di proposito");
+		}
 		List<Account> accounts = new ArrayList<Account>();
 		Account account1 = new Account(1, "Donald", "Duck");
 		Account account2 = new Account(2, "Jonh", "Doe");
