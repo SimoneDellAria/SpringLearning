@@ -3,9 +3,11 @@ package it.mycompany.spring.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -63,5 +65,22 @@ public class LoggingAspect {
 	public void afterFindAccountsAdvice(JoinPoint joinpoint) {
 		String methodName = joinpoint.getSignature().toShortString();
 		System.out.println("Metodo After (Finally) invocato da " + methodName);
+	}
+	
+	@Around("execution(* it.mycompany.spring.dao.AccountDAO.goToSleep(..))")
+	public Object aroundGoToSleepAdvice(ProceedingJoinPoint joinpoint) throws Throwable{
+		String methodName = joinpoint.getSignature().toShortString();
+		System.out.println("Metodo Around invocato da " + methodName);
+		long startingTime = System.currentTimeMillis();
+		Object res = null;
+		try {
+			res = joinpoint.proceed();
+		}catch(Exception ex) {
+			System.out.println("Eccezione catturata ed interrota nell'Advice: " + ex);
+			res = "Valore del risultato modificato nel post-processing";
+		}
+		long finishingTime = System.currentTimeMillis();
+		System.out.println("L'esecuzione del metodo è durata: " + (finishingTime - startingTime)/1000.0 + " secondi");
+		return res;
 	}
 }

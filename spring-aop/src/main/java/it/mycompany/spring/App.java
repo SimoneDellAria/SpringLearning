@@ -27,7 +27,8 @@ public class App {
 		System.out.println("Contenuto della risposta dal main: " + accounts);
 		*/
 		
-		// @AfterThrowing Advice Demonstration
+		// @AfterThrowing Advice Demonstration & @After Advice Demonstration
+		/*
 		List<Account> accounts2 = null;
 		try {
 			accounts2 = accountDAOInstance.findAccounts(true);
@@ -35,6 +36,12 @@ public class App {
 			System.out.println("Main Method: Eccezione " + ex);
 		}
 		System.out.println("Contenuto della risposta dal main: " + accounts2);
+		*/
+		
+		// @Around Advice Demonstration
+		System.out.println("Invocazione del metodo goToSleep dal main");
+		String res = accountDAOInstance.goToSleep(true);
+		System.out.println("Risposta visualizzata dal main: " + res);
 		context.close();
 	}
 

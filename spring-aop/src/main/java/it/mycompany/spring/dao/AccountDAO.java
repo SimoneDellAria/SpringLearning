@@ -2,6 +2,7 @@ package it.mycompany.spring.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,29 @@ public class AccountDAO {
 		accounts.add(account2);
 		accounts.add(account3);
 		return accounts;
+	}
+	
+	/*
+	public String goToSleep() {
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "Buongiorno!";
+	}
+	*/
+	
+	public String goToSleep(boolean makeException) {
+		if(makeException) {
+			throw new RuntimeException("Eccezione lanciata dal metodo goToSleep di proposito");
+		}
+		try {
+			TimeUnit.SECONDS.sleep(3);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "Buongiorno!";
 	}
 	
 	
