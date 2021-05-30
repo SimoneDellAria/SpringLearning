@@ -1,0 +1,17 @@
+.bad_credential {
+	color: red;
+}
+
+.form-title {
+	margin: auto;
+	width: 30%;
+	text-align: center;
+}
+
+.form-content {
+	margin: auto;
+	width: min-content;
+	border: 3px solid #73AD21;
+	padding: 10px;
+	text-align: center;
+}

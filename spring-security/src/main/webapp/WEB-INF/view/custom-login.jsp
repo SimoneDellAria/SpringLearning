@@ -3,31 +3,33 @@
 
 <html>
 <head>
-	<title>Pagina Di Login</title>
+<title>Pagina Di Login</title>
 
-	<style type="text/css">
-		.bad_credential {
-			color: red;
-		}
-	</style>
+<link rel="stylesheet" type="text/css" href="css/login-style.css">
 </head>
 
 <body>
-	<h3>Pagina di Login</h3>
-	<form:form action="${pageContext.request.contextPath}/authenticateUser"
-		method="POST">
+	<div class="form-title">
+		<h3>Pagina di Login</h3>
+	</div>
 
-		<c:if test="${param.error!=null}">
-			<i class="bad_credential">Mi dispiace, credenziali errate!</i>
-		</c:if>
+	<div class="form-content">
+		<form:form
+			action="${pageContext.request.contextPath}/authenticateUser"
+			method="POST">
 
-		<p>
-			Nome Utente: <input type="text" name="username" />
-		</p>
-		<p>
-			Password: <input type="password" name="password" />
-		</p>
-		<input type="submit" value="Login" />
-	</form:form>
+			<c:if test="${param.error!=null}">
+				<i class="bad_credential">Mi dispiace, credenziali errate!</i>
+			</c:if>
+
+			<p>
+				Nome Utente: <input type="text" name="username" />
+			</p>
+			<p>
+				Password: <input type="password" name="password" />
+			</p>
+			<input type="submit" value="Login" />
+		</form:form>
+	</div>
 </body>
 </html>
