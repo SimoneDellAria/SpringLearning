@@ -22,6 +22,10 @@
 				<i class="bad_credential">Mi dispiace, credenziali errate!</i>
 			</c:if>
 
+			<c:if test="${param.logout!=null}">
+				<i class="logout_ok">Logout effettuato con successo</i>
+			</c:if>
+
 			<p>
 				Nome Utente: <input type="text" name="username" />
 			</p>
