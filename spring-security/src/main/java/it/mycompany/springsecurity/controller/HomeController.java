@@ -20,4 +20,9 @@ public class HomeController {
 	public String showSystemPage() {
 		return "systems";
 	}
+	
+	@GetMapping("/access-denied")
+	public String showAccessDeniedPage() {
+		return "access-denied";
+	}
 }
