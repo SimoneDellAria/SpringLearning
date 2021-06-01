@@ -17,8 +17,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		@SuppressWarnings("deprecation")
 		UserBuilder users = User.withDefaultPasswordEncoder();
 		auth.inMemoryAuthentication().withUser(users.username("Simone").password("password").roles("STUDENT"))
-				.withUser(users.username("Mario").password("password").roles("PROFESSOR"))
-				.withUser(users.username("admin").password("admin").roles("ADMIN"));
+				.withUser(users.username("Mario").password("password").roles("STUDENT", "PROFESSOR"))
+				.withUser(users.username("admin").password("admin").roles("STUDENT", "ADMIN"));
 
 	}
 
@@ -26,7 +26,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/css/**").permitAll()
-			.anyRequest().authenticated()
+			.antMatchers("/").hasRole("STUDENT")
+			.antMatchers("/professors/**").hasRole("PROFESSOR")
+			.antMatchers("/systems/**").hasRole("ADMIN")
 		.and()
 		.formLogin()
 			.loginPage("/showCustomLoginPage")

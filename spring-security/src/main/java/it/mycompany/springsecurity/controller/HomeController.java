@@ -10,4 +10,14 @@ public class HomeController {
 	public String showHome() {
 		return "home";
 	}
+	
+	@GetMapping("/professors")
+	public String showProfessorPage() {
+		return "professors";
+	}
+	
+	@GetMapping("/systems")
+	public String showSystemPage() {
+		return "systems";
+	}
 }
