@@ -1,0 +1,1 @@
+<#assign commonProperty = "Some Information available to all views">
