@@ -18,7 +18,7 @@
 	</li>
 	<li>Product ID: ${product.id}</li>
 	
-	<h2>AVAILBLE PRODUCTS</h2>
+	<h2>AVAILABLE PRODUCTS</h2>
 	<table>
 		<thead>
 			<tr>
